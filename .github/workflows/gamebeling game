@@ -1,0 +1,54 @@
+import random
+
+value = ["green", "red", "black"]
+money = 100
+run = True
+days = 0
+loan = 0
+
+while run == True:
+    results = random.choices(value, weights=[2, 18, 18])
+
+    if money == 0:
+        answer = input("do you want a loan: ")
+        if answer == "yes":
+            amount_of_laon = int(input("how much do you want to laon: "))
+            loan =+ amount_of_laon
+            days =+ 11
+
+
+    guess = input("green red or black: ")
+    bet = int(input("how much you willing to bet: "))
+
+
+    while money + loan < bet:
+        print("you dont have enough for this you only have ", money, "and you wanted to bet ", bet, "dollars")
+        bet = int(input("how much you willing to bet: "))
+
+
+    if results[0] == guess:
+        bet = bet * 2
+        money += bet
+        print("you won now you have ", money, " dollars")
+
+    else:
+        money -= bet
+        print("you lost you now have ", money + loan , " dollars")
+
+        print(results[0])
+
+
+    if money < 0:
+
+        ask = input("do you want to give money back to the bank: ")
+        if ask == "yes":
+            payback = int(input("how much do you want to give back to the bank: "))
+            money + loan - payback
+
+
+    if loan > 0:
+        days -= 1
+        print("you have ", days, "left till you die but if you dont want to die you should pay it back before then")
+
+    if days < 0:
+        quit()
